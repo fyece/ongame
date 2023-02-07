@@ -1,0 +1,28 @@
+@import "./base.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#app {
+  height: 100vh;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+.bg-black {
+  background-color: var(--color-background-black);
+}
+
+.animation {
+	transition: var(--animation)
+}
