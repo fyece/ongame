@@ -1,5 +1,5 @@
 <template>
-  <div class="list">
+  <div class="list mx-auto sm:mx-0">
     <GameCard v-for="game in games" :key="game.id" :game="game" />
   </div>
 </template>
@@ -19,6 +19,6 @@ defineProps<Props>();
 .list {
   display: grid;
   grid-gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 </style>

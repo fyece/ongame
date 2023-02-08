@@ -1,7 +1,11 @@
 <template>
   <div class="template h-full relative">
-    <slot name="sidebar"></slot>
-    <slot name="content"></slot>
+    <div class="static top-0">
+      <slot name="sidebar"></slot>
+    </div>
+    <div class="">
+      <slot name="content"></slot>
+    </div>
   </div>
 </template>
 

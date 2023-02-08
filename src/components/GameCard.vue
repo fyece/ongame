@@ -1,14 +1,15 @@
 <template>
-  <div
-    class="card bg-place rounded-3xl place-items-end overflow-hidden"
+  <RouterLink
+    :to="`games/${game.id}`"
+    class="card bg-place rounded-3xl place-items-end overflow-hidden cursor-pointer"
     :style="{ backgroundImage: `url(${game.background_image})` }"
   >
-    <div class="bg-tint p-2 pt-3 flex flex-col gap-2 align-bottom w-full">
+    <div class="bg-tint p-3 pt-4 grid items-end gap-2 align-bottom w-full">
       <h3 class="font-medium text-3xl">
         {{ game.name }}
       </h3>
     </div>
-  </div>
+  </RouterLink>
 </template>
 
 <script setup lang="ts">
@@ -29,19 +30,19 @@ defineProps<Props>();
 }
 
 .card {
-	display: grid;
-  min-height: 360px;
+  display: grid;
+  min-height: 320px;
   max-height: 360px;
-  min-width: 260px;
-  max-width: 360px;
+  min-width: 220px;
+  max-width: 260px;
 }
 .bg-tint {
-	min-height: 7rem;
-	height: fit-content;
+  min-height: 7rem;
+  height: fit-content;
   background: linear-gradient(
     180deg,
     rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.6) 100%
+    rgba(0, 0, 0, 1) 100%
   );
 }
 </style>
