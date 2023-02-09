@@ -36,6 +36,7 @@ export interface GameInfo {
   name: string;
   name_original: string;
   description: string;
+  description_raw: string;
   metacritic: number;
   metacritic_platforms: {
     metascore: number;
@@ -96,6 +97,8 @@ export interface GameInfo {
     image_background: string;
   }[];
   stores: WhereToBuy[];
+  genres: Genre[];
+  tags: Tag[];
 }
 
 export interface WhereToBuy {
@@ -109,6 +112,23 @@ export interface Store {
   name: string;
   slug: string;
   domain: string;
+  games_count: number;
+  image_background: string;
+}
+
+export interface Genre {
+  id: number;
+  name: string;
+  slug: string;
+  games_count: number;
+  image_background: string;
+}
+
+export interface Tag {
+  id: number;
+  name: string;
+  slug: string;
+  language: string;
   games_count: number;
   image_background: string;
 }

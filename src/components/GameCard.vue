@@ -5,7 +5,7 @@
     :style="{ backgroundImage: `url(${game.background_image})` }"
   >
     <div class="bg-tint p-3 pt-4 grid items-end gap-2 align-bottom w-full">
-      <h3 class="font-medium text-3xl">
+      <h3 class="font-medium text-2xl">
         {{ game.name }}
       </h3>
     </div>

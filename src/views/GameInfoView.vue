@@ -26,15 +26,15 @@
 
           <div class="grid grid-cols-3 gap-2">
             <TitledInfo title="Released">
-              <span class="text-lg">{{ gameInfo?.released }}</span>
+              <span class="text-lg">{{
+                digitDateToString(gameInfo?.released ?? "")
+              }}</span>
             </TitledInfo>
             <TitledInfo title="ESRB Rating">
               <span class="text-lg">{{ gameInfo?.esrb_rating.name }}</span>
             </TitledInfo>
             <TitledInfo title="Metacritic" class="place-self-center">
-              <span class="text-lg text-center">{{
-                gameInfo?.metacritic
-              }}</span>
+              <MetacriticChip :score="gameInfo?.metacritic" />
             </TitledInfo>
           </div>
 
@@ -61,21 +61,29 @@
               >
             </div>
           </TitledInfo>
-<!-- 
+
           <TitledInfo title="Genres">
             <div class="flex flex-wrap gap-3 gap-y-0">
               <span
-                v-for="genre in gameInfo?.platforms"
-                :key="platform.platform.id"
+                v-for="genre in gameInfo?.genres"
+                :key="genre.id"
                 class="text-lg"
-                >{{ platform.platform.name }}</span
+                >{{ genre.name }}</span
               >
             </div>
-          </TitledInfo> -->
+          </TitledInfo>
         </div>
       </div>
-      <div>about</div>
-      <div>tags</div>
+      <div class="grid gap-2">
+        <h3 class="font-semibold">About</h3>
+        <TextReadMore :lines="6" :text="gameInfo?.description_raw ?? ''" />
+      </div>
+      <div class="grid gap-2">
+        <h3 class="font-semibold">Tags</h3>
+        <div class="flex flex-wrap gap-3">
+          <TagChip v-for="tag in gameInfo?.tags" :key="tag.id" :text="tag.name" />
+        </div>
+      </div>
     </div>
   </LayoutNarrow>
 </template>
@@ -87,6 +95,10 @@ import TitledInfo from "@/components/TitledInfo.vue";
 import { useGameStore } from "@/stores/game";
 import { ref, computed, onMounted } from "vue";
 import { useRoute } from "vue-router";
+import { digitDateToString } from "@/utils";
+import MetacriticChip from "@/components/MetacriticChip.vue";
+import TextReadMore from "@/components/TextReadMore.vue";
+import TagChip from "@/components/TagChip.vue";
 
 const gameId = ref(Number(useRoute().params["id"]));
 
