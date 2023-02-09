@@ -89,13 +89,7 @@ export interface GameInfo {
     released_at: string;
     // requirements: {};
   }[];
-  developers: {
-    id: number;
-    name: string;
-    slug: string;
-    games_count: number;
-    image_background: string;
-  }[];
+  developers: Developer[];
   stores: WhereToBuy[];
   genres: Genre[];
   tags: Tag[];
@@ -116,11 +110,7 @@ export interface Store {
   image_background: string;
 }
 
-<<<<<<< HEAD
 export interface Genre {
-=======
-export interface Developer {
->>>>>>> origin/0902-work
   id: number;
   name: string;
   slug: string;
@@ -128,7 +118,14 @@ export interface Developer {
   image_background: string;
 }
 
-<<<<<<< HEAD
+export interface Developer {
+  id: number;
+  name: string;
+  slug: string;
+  games_count: number;
+  image_background: string;
+}
+
 export interface Tag {
   id: number;
   name: string;
@@ -136,7 +133,8 @@ export interface Tag {
   language: string;
   games_count: number;
   image_background: string;
-=======
+}
+
 export interface GameListParams {
   page?: number;
   page_size?: number;
@@ -161,5 +159,4 @@ export interface GameListParams {
   exclude_game_series?: boolean;
   exclude_stores?: string;
   orderin?: string;
->>>>>>> origin/0902-work
 }

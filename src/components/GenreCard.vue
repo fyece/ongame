@@ -1,22 +1,22 @@
 <template>
   <RouterLink
-    :to="`/developers/${developer.id}`"
-    class="card bg-place sm:min-h-[200px] pt-[45%] sm:pt-[100%] relative rounded-full place-items-end overflow-hidden cursor-pointer"
+    :to="`/genres/${genre.id}`"
+    class="card bg-place sm:min-h-[200px] pt-[45%] sm:pt-[100%] relative rounded-3xl place-items-end overflow-hidden cursor-pointer"
     :style="{
-      backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${developer.image_background})`,
+      backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${genre.image_background})`,
     }"
   >
       <h3 class="font-medium text-3xl text-center absolute">
-        {{ developer.name }}
+        {{ genre.name }}
       </h3>
   </RouterLink>
 </template>
 
 <script setup lang="ts">
-import type { Developer } from "@/types/types";
+import type { Genre } from "@/types/types";
 
 interface Props {
-  developer: Developer;
+  genre: Genre;
 }
 
 defineProps<Props>();

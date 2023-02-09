@@ -31,7 +31,7 @@
               }}</span>
             </TitledInfo>
             <TitledInfo title="ESRB Rating">
-              <span class="text-lg">{{ gameInfo?.esrb_rating.name }}</span>
+              <span class="text-lg">{{ gameInfo?.esrb_rating?.name ?? 'None' }}</span>
             </TitledInfo>
             <TitledInfo title="Metacritic" class="place-self-center">
               <MetacriticChip :score="gameInfo?.metacritic" />

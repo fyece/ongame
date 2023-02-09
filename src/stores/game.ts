@@ -9,15 +9,12 @@ export const useGameStore = defineStore("game", () => {
   const games = ref<Game[]>([]);
   const gameInfo = ref<GameInfo>();
   const isLoading = ref(false);
-  const next = ref("");
-  const prev = ref("");
-  const gamesCount = ref();
+  const gamesCount = ref(0);
   const pagesCount = computed(() => gamesCount.value / defaultParams.page_size);
 
   const defaultParams = reactive({
     key: API_KEY,
-    page_size: 48,
-    page: 1,
+    page_size: 30,
   });
 
   const getGames = async (params?: GameListParams) => {
@@ -31,6 +28,9 @@ export const useGameStore = defineStore("game", () => {
       })
       .then((res) => {
         isLoading.value = false;
+        if (!params?.page) {
+          games.value = [];
+        }
         games.value = [...games.value, ...res.data.results];
         gamesCount.value = res.data.count;
       })
@@ -58,37 +58,15 @@ export const useGameStore = defineStore("game", () => {
       });
   };
 
-  function nextPage(params?: GameListParams) {
-    if (defaultParams.page < pagesCount.value) {
-      defaultParams.page++;
-      getGames(params);
-    }
-  }
 
-  function prevPage(params?: GameListParams) {
-    if (defaultParams.page !== 1) {
-      defaultParams.page--;
-      getGames(params);
-    }
-  }
-
-  // watch(
-  //   () => [defaultParams.page],
-  //   () => {
-  //     getGames();
-  //   }
-  // );
 
   return {
     games,
     gameInfo,
-    next,
-    prev,
     gamesCount,
     isLoading,
+    pagesCount,
     getGames,
     getGameById,
-    nextPage,
-    prevPage,
   };
 });

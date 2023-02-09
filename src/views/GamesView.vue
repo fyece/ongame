@@ -16,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { useGameStore } from "@/stores/game";
 import ContentLayout from "@/components/ContentLayout.vue";
 import GamesList from "@/components/GamesList.vue";
@@ -25,11 +25,11 @@ import BaseLoader from "@/components/BaseLoader.vue";
 const store = useGameStore();
 const games = computed(() => store.games);
 const isLoading = computed(() => store.isLoading);
+const page = ref(1);
 
 const loadMore = () => {
-  console.log("get next page");
-
-  store.nextPage();
+  page.value++;
+  store.getGames({page: page.value});
 };
 
 onMounted(() => {

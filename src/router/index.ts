@@ -4,6 +4,7 @@ import GameInfoView from "../views/GameInfoView.vue";
 import DevelopersView from "../views/DevelopersView.vue";
 import DeveloperInfoView from "../views/DeveloperInfoView.vue";
 import GenresView from "../views/GenresView.vue";
+import GenreInfoView from "../views/GenreInfoView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -37,6 +38,11 @@ const router = createRouter({
       path: "/genres",
       name: "genres",
       component: GenresView,
+    },
+    {
+      path: "/genres/:id",
+      name: "genreInfo",
+      component: GenreInfoView,
     },
   ],
 });

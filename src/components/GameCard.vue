@@ -1,6 +1,6 @@
 <template>
   <RouterLink
-    :to="`games/${game.id}`"
+    :to="`/games/${game.id}`"
     class="card bg-place rounded-3xl place-items-end overflow-hidden cursor-pointer"
     :style="{ backgroundImage: `url(${game.background_image})` }"
   >
