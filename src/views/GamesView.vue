@@ -33,7 +33,7 @@ const loadMore = () => {
 };
 
 onMounted(() => {
-  store.getGames();
+  store.getGames({});
 });
 </script>
 
