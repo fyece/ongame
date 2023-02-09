@@ -18,7 +18,7 @@ const navItems = [
   },
   {
     name: "Developers",
-    link: "/devs",
+    link: "/developers",
   },
   {
     name: "Genres",
