@@ -160,3 +160,9 @@ export interface GameListParams {
   exclude_stores?: string;
   orderin?: string;
 }
+
+export interface SearchResults {
+  games: Game[];
+  developers: Developer[];
+  genres: Genre[];
+}

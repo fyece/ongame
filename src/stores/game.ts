@@ -60,6 +60,21 @@ export const useGameStore = defineStore("game", () => {
       });
   };
 
+  async function searchGames (params:GameListParams) {
+    let games:Game[] = [];
+    let errorMessage = '';
+    
+    await instance.get('games', {params: {
+      ...defaultParams,
+      ...params
+    }}).then(res => {
+      games = res.data.results ?? []
+    }).catch(e => {
+      errorMessage = "Error: " + e;
+    })
+    return {games, errorMessage}
+  }
+
   const clearGames = () => {
     games.value = [];
   }
@@ -72,6 +87,7 @@ export const useGameStore = defineStore("game", () => {
     pagesCount,
     getGames,
     getGameById,
+    searchGames,
     clearGames,
   };
 });

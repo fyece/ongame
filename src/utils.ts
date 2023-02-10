@@ -25,3 +25,13 @@ export const digitDateToString = (date: string) => {
   const [day, month, year] = date.split("-").reverse();
   return `${getMonthName(month)} ${day}, ${year}`;
 };
+
+export const createDebounce = () => {
+  let timeout: any = null;
+  return function (fnc: any, delayMs: number) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      fnc();
+    }, delayMs || 500);
+  };
+};

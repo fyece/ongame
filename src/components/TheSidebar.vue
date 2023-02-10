@@ -1,10 +1,10 @@
 <template>
-  <div
+  <aside
     class="flex flex-col h-full items-center gap-16 px-3 py-16 bg-black"
   >
     <TheLogo />
     <TheNavigation />
-  </div>
+  </aside>
 </template>
 
 <script setup lang="ts">

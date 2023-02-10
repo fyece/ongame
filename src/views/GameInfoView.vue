@@ -1,5 +1,6 @@
 <template>
   <LayoutNarrow>
+    <TheSearch />
     <BaseLoader v-if="isLoading" />
     <div v-else class="grid gap-8">
       <div class="main-info-grid">
@@ -99,6 +100,7 @@ import { digitDateToString } from "@/utils";
 import MetacriticChip from "@/components/MetacriticChip.vue";
 import TextReadMore from "@/components/TextReadMore.vue";
 import TagChip from "@/components/TagChip.vue";
+import TheSearch from "@/components/TheSearch.vue";
 
 const gameId = ref(Number(useRoute().params["id"]));
 
