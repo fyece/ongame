@@ -33,6 +33,7 @@ const loadMore = () => {
 };
 
 onMounted(() => {
+  store.clearGames();
   store.getGames({});
 });
 </script>

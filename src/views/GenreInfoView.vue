@@ -42,6 +42,7 @@ const loadMore = () => {
 };
 
 onMounted(() => {
+  gameStore.clearGames();
   genreStore.getGenreById(Number(genreId.value));
   gameStore.getGames({ genres: genreId.value ?? "" });
 });

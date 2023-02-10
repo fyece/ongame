@@ -5,7 +5,7 @@
       <GenresList :genres="genres" />
       <BaseLoader v-if="isLoading" />
       <button
-        v-if="genres.length"
+        v-if="genres.length && page < pagesCount"
         @click="loadMore"
         class="px-4 py-2 rounded-lg bg-neutral-800"
       >
@@ -16,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { useGenreStore } from "@/stores/genre";
 import BaseLoader from "@/components/BaseLoader.vue";
 import ContentLayout from "@/components/ContentLayout.vue";
@@ -25,11 +25,12 @@ import GenresList from "@/components/GenresList.vue";
 const store = useGenreStore();
 const genres = computed(() => store.genres);
 const isLoading = computed(() => store.isLoading);
+const pagesCount = computed(() => store.pagesCount)
+const page = ref(1);
 
 const loadMore = () => {
-  console.log("get next page");
-
-  store.nextPage();
+  page.value++
+  store.getGenres({page: page.value})
 };
 
 onMounted(() => {

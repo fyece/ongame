@@ -10,7 +10,9 @@ export const useGameStore = defineStore("game", () => {
   const gameInfo = ref<GameInfo>();
   const isLoading = ref(false);
   const gamesCount = ref(0);
-  const pagesCount = computed(() => gamesCount.value / defaultParams.page_size);
+  const pagesCount = computed(() =>
+    Math.ceil(gamesCount.value / defaultParams.page_size)
+  );
 
   const defaultParams = reactive({
     key: API_KEY,
@@ -58,7 +60,9 @@ export const useGameStore = defineStore("game", () => {
       });
   };
 
-
+  const clearGames = () => {
+    games.value = [];
+  }
 
   return {
     games,
@@ -68,5 +72,6 @@ export const useGameStore = defineStore("game", () => {
     pagesCount,
     getGames,
     getGameById,
+    clearGames,
   };
 });

@@ -48,6 +48,7 @@ const loadMore = () => {
 
 onMounted(() => {
   developerStore.getDeveloperById(Number(developerId.value));
+  gameStore.clearGames();
   gameStore.getGames({ developers: developerId.value ?? "" });
 });
 

@@ -11,13 +11,12 @@ export const useDeveloperStore = defineStore("developer", () => {
 
   const isLoading = ref(false);
   const developersCount = ref();
-  const pagesCount = computed(
-    () => developersCount.value / defaultParams.page_size
+  const pagesCount = computed(() =>
+    Math.ceil(developersCount.value / defaultParams.page_size)
   );
   const defaultParams = reactive({
     key: API_KEY,
     page_size: 48,
-    page: 1,
   });
 
   const getDevelopers = async (params?: any) => {
@@ -43,7 +42,7 @@ export const useDeveloperStore = defineStore("developer", () => {
   const getDeveloperById = (developerId: number) => {
     isLoading.value = true;
     instance
-      .get(`developers/${developerId}`, {params: {...defaultParams}})
+      .get(`developers/${developerId}`, { params: { ...defaultParams } })
       .then((res) => {
         isLoading.value = false;
         developerInfo.value = res.data;
@@ -54,20 +53,6 @@ export const useDeveloperStore = defineStore("developer", () => {
       });
   };
 
-  function nextPage(params?: any) {
-    if (defaultParams.page < pagesCount.value) {
-      defaultParams.page++;
-      getDevelopers(params);
-    }
-  }
-
-  function prevPage(params?: any) {
-    if (defaultParams.page !== 1) {
-      defaultParams.page--;
-      getDevelopers(params);
-    }
-  }
-
   return {
     developers,
     developerInfo,
@@ -75,7 +60,5 @@ export const useDeveloperStore = defineStore("developer", () => {
     pagesCount,
     getDevelopers,
     getDeveloperById,
-    nextPage,
-    prevPage,
   };
 });

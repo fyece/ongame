@@ -11,13 +11,12 @@ export const useGenreStore = defineStore("genre", () => {
 
   const isLoading = ref(false);
   const genresCount = ref();
-  const pagesCount = computed(
-    () => genresCount.value / defaultParams.page_size
+  const pagesCount = computed(() =>
+    Math.ceil(genresCount.value / defaultParams.page_size)
   );
   const defaultParams = reactive({
     key: API_KEY,
     page_size: 48,
-    page: 1,
   });
 
   const getGenres = async (params?: any) => {
@@ -43,7 +42,7 @@ export const useGenreStore = defineStore("genre", () => {
   const getGenreById = (genreId: number) => {
     isLoading.value = true;
     instance
-      .get(`genres/${genreId}`, {params: {...defaultParams}})
+      .get(`genres/${genreId}`, { params: { ...defaultParams } })
       .then((res) => {
         isLoading.value = false;
         genreInfo.value = res.data;
@@ -54,20 +53,6 @@ export const useGenreStore = defineStore("genre", () => {
       });
   };
 
-  function nextPage(params?: any) {
-    if (defaultParams.page < pagesCount.value) {
-      defaultParams.page++;
-      getGenres(params);
-    }
-  }
-
-  function prevPage(params?: any) {
-    if (defaultParams.page !== 1) {
-      defaultParams.page--;
-      getGenres(params);
-    }
-  }
-
   return {
     genres,
     genreInfo,
@@ -75,7 +60,5 @@ export const useGenreStore = defineStore("genre", () => {
     pagesCount,
     getGenres,
     getGenreById,
-    nextPage,
-    prevPage,
   };
 });
