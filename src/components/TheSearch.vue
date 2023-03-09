@@ -14,25 +14,20 @@
     >
       <ul class="grid gap-5">
         <li v-if="searchResults.games.length" class="gap-3">
-          <h4 class="text-neutral-300 text-semibold">Games</h4>
+          <!-- <h4 class="text-neutral-300 text-semibold">Games</h4> -->
           <ul class="gap-3">
-            <li v-for="game in searchResults.games" :key="game.id"  class="font-medium">{{game.name}}</li>
+            <li
+              v-for="game in searchResults.games"
+              :key="game.id"
+              class="font-medium"
+              @click="() => {isOpen = false; searchInput = ''}"
+            >
+            <RouterLink :to="`/games/${game.id}`">
+              {{ game.name }}
+          </RouterLink>
+            </li>
           </ul>
         </li>
-<!-- 
-        <li v-if="searchResults.developers.length" class="gap-3">
-          <h4 class="text-neutral-300 text-semibold">Developers</h4>
-          <ul class="gap-3">
-            <li v-for="developer in searchResults.developers" :key="developer.id" class="font-medium">{{developer.name}}</li>
-          </ul>
-        </li> -->
-
-        <!-- <li v-if="searchResults.genres.length" class="gap-3">
-          <h4 class="text-neutral-300 text-semibold">Genres</h4>
-          <ul class="gap-3">
-            <li v-for="genre in searchResults.genres" :key="genre.id"  class="font-medium">{{genre.name}}</li>
-          </ul>
-        </li> -->
       </ul>
     </div>
   </div>
@@ -43,12 +38,8 @@ import { ref, reactive } from "vue";
 import { createDebounce } from "@/utils";
 import type { SearchResults } from "@/types/types";
 import { useGameStore } from "@/stores/game";
-import { useGenreStore } from "@/stores/genre";
-import { useDeveloperStore } from "@/stores/developer";
 
-const gameStore = useGameStore()
-const developerStore = useDeveloperStore()
-const genreStore = useGenreStore()
+const gameStore = useGameStore();
 
 const searchInput = ref("");
 const searchResults: SearchResults = reactive({
@@ -61,14 +52,16 @@ const isOpen = ref(false);
 const useDebounde = createDebounce();
 
 const onInput = () => {
-	isOpen.value = true
-	useDebounde(async ()=> {
-		const { games } = await gameStore.searchGames({search: searchInput.value, page_size: 5});
-		searchResults.games = games;
-		// searchResults.developers = await developerStore.getDevelopers({search: searchInput, page_size: 5});
-		// searchResults.genres = await genreStore.getGenres({search: searchInput, page_size: 5});
-	}, 200)
-}
+  searchResults.games = [];
+  isOpen.value = true;
+  useDebounde(async () => {
+    const { games } = await gameStore.searchGames({
+      search: searchInput.value,
+      page_size: 5,
+    });
+    searchResults.games = games;
+  }, 200);
+};
 </script>
 
 <style scoped lang="scss">

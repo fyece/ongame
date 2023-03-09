@@ -94,7 +94,7 @@ import BaseLoader from "@/components/BaseLoader.vue";
 import LayoutNarrow from "@/components/LayoutNarrow.vue";
 import TitledInfo from "@/components/TitledInfo.vue";
 import { useGameStore } from "@/stores/game";
-import { ref, computed, onMounted } from "vue";
+import { ref, computed, onMounted, onUpdated } from "vue";
 import { useRoute } from "vue-router";
 import { digitDateToString } from "@/utils";
 import MetacriticChip from "@/components/MetacriticChip.vue";
@@ -102,15 +102,19 @@ import TextReadMore from "@/components/TextReadMore.vue";
 import TagChip from "@/components/TagChip.vue";
 import TheSearch from "@/components/TheSearch.vue";
 
-const gameId = ref(Number(useRoute().params["id"]));
 
 const store = useGameStore();
 const gameInfo = computed(() => store.gameInfo);
 const isLoading = computed(() => store.isLoading);
 
 onMounted(() => {
+  const gameId = ref(Number(useRoute().params["id"]));
   store.getGameById(gameId.value);
 });
+onUpdated(() => {
+  const gameId = ref(Number(useRoute().params["id"]));
+  store.getGameById(gameId.value);
+})
 </script>
 
 <style scoped>
