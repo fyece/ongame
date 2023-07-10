@@ -1,6 +1,6 @@
 <template>
   <nav class="w-full">
-    <ul class="flex flex-col gap-2">
+    <ul class="flex md:flex-col gap-2 justify-center">
       <NavItem v-for="nav in navItems" :key="nav.link" :link="nav.link">{{
         nav.name
       }}</NavItem>

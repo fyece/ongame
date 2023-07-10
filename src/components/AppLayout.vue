@@ -17,4 +17,11 @@
   grid-template-columns: minmax(120px, 240px) 1fr;
   height: 100%;
 }
+
+@media (max-width: 768px) {
+  .template {
+    grid-template-columns: 1fr;
+    grid-template-rows: 60px 1fr;
+  }
+}
 </style>
