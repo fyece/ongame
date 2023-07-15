@@ -1,6 +1,6 @@
 <template>
   <div class="template h-full relative">
-    <div class="static top-0">
+    <div class="sticky top-0 z-50">
       <slot name="sidebar"></slot>
     </div>
     <div class="">

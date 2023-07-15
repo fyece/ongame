@@ -1,6 +1,6 @@
 <template>
   <svg
-  class="shrink-0"
+  class="md:shrink-0"
     width="150"
     height="36"
     viewBox="0 0 150 36"

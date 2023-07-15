@@ -33,8 +33,5 @@ defineProps<Props>();
   display: grid;
   place-items: center;
   min-height: 200px;
-  // max-height: 260px;
-  // min-width: 200px;
-  // max-width: 260px;
 }
 </style>

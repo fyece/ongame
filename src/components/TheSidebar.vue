@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex sticky top-0 flex-col h-16 md:h-screen items-center gap-2 md:gap-16 px-3 md:py-16 bg-black"
+    class="flex sticky top-0 md:flex-col h-16 md:h-screen items-center gap-2 md:gap-16 px-3 md:py-16 bg-black"
   >
     <TheLogo />
     <TheNavigation />
